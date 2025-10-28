@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>نیکان نورمحمدزاده — جعبه ابزار ریاضی نهم (نئون)</title>
+<style>
+  /* Reset */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;padding:0}
+  body{
+    background:#030417;
+    color:#dff7ff;
+    font-family: "Vazirmatn","Tahoma","Helvetica","Arial",sans-serif;
+    direction:rtl;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:22px;
+    overflow-y:auto;
+  }
+
+  /* Neon container */
+  .wrap{
+    max-width:1100px;margin:0 auto;padding:18px;border-radius:14px;
+    background:linear-gradient(180deg, rgba(6,11,23,0.28), rgba(2,6,16,0.6));
+    box-shadow: 0 10px 40px rgba(0,200,255,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
+    border:1px solid rgba(0,200,255,0.06);
+  }
+
+  header{display:flex;align-items:center;gap:16px}
+  .avatar{
+    width:80px;height:80px;border-radius:12px;
+    background:linear-gradient(135deg,#00e6ff,#7b61ff);
+    box-shadow:0 6px 30px rgba(123,97,255,0.18), 0 0 24px rgba(0,230,255,0.08);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#021428;
+    font-size:20px;
+  }
+  h1{margin:0;font-size:20px;color:#bffcff;text-shadow:0 4px 18px rgba(0,230,255,0.08)}
+  p.lead{margin:0;color:#9fd9e6;font-size:13px}
+
+  /* tabs */
+  .tabs{display:flex;gap:8px;margin-top:18px}
+  .tab{
+    padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.02);
+    color:#9fd9e6;cursor:pointer;font-weight:700;transition:all .18s;
+  }
+  .tab.active{
+    background:linear-gradient(90deg, rgba(0,230,255,0.06), rgba(123,97,255,0.04));
+    box-shadow:0 8px 24px rgba(0,230,255,0.04);
+    border:1px solid rgba(0,230,255,0.18);
+    color:#eaffe8;
+  }
+
+  main{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+
+  /* card */
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 6px 18px rgba(2,6,23,0.4);
+  }
+  .section-title{display:flex;align-items:center;gap:8px}
+  .neon-badge{
+    background:linear-gradient(90deg,#00e6ff,#7b61ff);padding:6px 10px;border-radius:8px;color:#021428;font-weight:800;
+    box-shadow:0 6px 20px rgba(0,230,255,0.05);
+  }
+
+  label{display:block;color:#9fd9e6;margin-top:8px;font-size:13px}
+  input[type="text"], input[type="number"], textarea, select{
+    width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);
+    background:rgba(1,8,15,0.5);color:#e6fbff;margin-top:6px;font-size:14px;
+  }
+
+  .btn{
+    display:inline-block;padding:8px 12px;border-radius:10px;border:none;background:#00e6ff;color:#001218;
+    font-weight:900;cursor:pointer;margin:6px 6px 0 0;box-shadow:0 8px 30px rgba(0,230,255,0.06);
+    transition:transform .12s, box-shadow .12s;
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,230,255,0.12)}
+  .btn.ghost{background:transparent;color:#9fd9e6;border:1px solid rgba(255,255,255,0.04);box-shadow:none}
+
+  pre.output{
+    background:linear-gradient(180deg,#001827,#00141a);padding:12px;border-radius:10px;color:#dff7fb;
+    border:1px solid rgba(0,230,255,0.04);white-space:pre-wrap;word-break:break-word;font-size:14px;
+  }
+
+  .muted{color:#7fb7c6;font-size:13px}
+
+  /* neon lines */
+  .neon-line{height:3px;border-radius:6px;background:linear-gradient(90deg,#00e6ff,#7b61ff);margin:12px 0;opacity:.12}
+
+  footer{margin-top:12px;color:#8fb7c7;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+
+  /* responsive */
+  @media(max-width:720px){
+    .avatar{display:none}
+    header{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar">N</div>
+      <div>
+        <h1>جعبه‌ابزار ریاضی نهم — نئون ادیشن</h1>
+        <p class="lead">نیکان نورمحمدزاده — کلاس ۹/۳ پورسینا · فصل ۱ و ۲ (مجموعه‌ها و عددهای حقیقی)</p>
+      </div>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <div class="tab active" data-tab="sets">فصل ۱ — مجموعه‌ها</div>
+      <div class="tab" data-tab="reals">فصل ۲ — عددهای حقیقی</div>
+    </div>
+
+    <main>
+      <!-- ======= فصل 1: مجموعه ها ======= -->
+      <section id="sets" class="card" style="display:block">
+        <div class="section-title">
+          <div class="neon-badge">فصل ۱</div>
+          <div style="font-weight:800">مجموعه‌ها — سریع و بدون فوت وقت</div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:250px">
+            <label>مجموعه A (اعضا با کاما)</label>
+            <input id="A" type="text" value="1,2,3,5" />
+            <label>مجموعه B</label>
+            <input id="B" type="text" value="2,4,5" />
+            <label>جهان (U) — خالی بذار تا خودِ برنامه A∪B رو در نظر بگیره</label>
+            <input id="U" type="text" value="" placeholder="مثال: 1,2,3,4,5,6" />
+
+            <div style="margin-top:8px">
+              <button class="btn" onclick="doUnion()">A ∪ B</button>
+              <button class="btn" onclick="doInter()">A ∩ B</button>
+              <button class="btn" onclick="doDiff()">A − B</button>
+              <button class="btn ghost" onclick="doComplement()">A' (مکمل نسبت به U)</button>
+            </div>
+
+            <div style="margin-top:8px">
+              <button class="btn" onclick="powerSet()">تولید Power-set (زیرمجموعه‌ها)</button>
+              <button class="btn" onclick="countSubsets()">تعداد زیرمجموعه‌ها</button>
+            </div>
+
+            <div style="margin-top:8px">
+              <button class="btn" onclick="incExc()">قانون شامل-حذف (A∪B∪C)</button>
+              <button class="btn" onclick="cartesian()">A × B (ضرب دکارتی)</button>
+            </div>
+
+          </div>
+
+          <div style="flex:1;min-width:300px">
+            <label>مجموعه C (برای شامل-حذف)</label>
+            <input id="C" type="text" value="5,7" />
+
+            <div style="margin-top:10px" class="muted">خروجی گام‌به‌گام:</div>
+            <pre id="setsOut" class="output">نتیجه اینجا نمایش داده می‌شود — دکمه‌ها رو بزن.</pre>
+            <div class="muted" style="margin-top:8px">نکته: اگر مجموعه بزرگ باشه، Power-set ممکنه خیلی طولانی بشه — من تا n=16 تولید می‌کنم.</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ======= فصل 2: اعداد حقیقی ======= -->
+      <section id="reals" class="card" style="display:none">
+        <div class="section-title">
+          <div class="neon-badge">فصل ۲</div>
+          <div style="font-weight:800">عددهای حقیقی — باحال و کاربردی</div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <label>عدد اول (می‌تونی بنویسی: 3.14 یا 22/7 یا sqrt(2) )</label>
+            <input id="num1" type="text" value="3.5" />
+            <label>عدد دوم</label>
+            <input id="num2" type="text" value="-2" />
+
+            <div style="margin-top:8px">
+              <button class="btn" onclick="absAndDist()">قدر مطلق و فاصله</button>
+              <button class="btn" onclick="compareNums()">مقایسه</button>
+              <button class="btn" onclick="roundNums()">گرد کن (2 رقم)</button>
+            </div>
+
+            <div style="margin-top:8px">
+              <button class="btn" onclick="sciNot()">نمایش علمی</button>
+              <button class="btn" onclick="detectType()">گویا یا گنگ؟ (تشخیص ساده)</button>
+            </div>
+
+          </div>
+
+          <div style="flex:1;min-width:300px">
+            <div class="muted">خروجی مرحله‌به‌مرحله:</div>
+            <pre id="realsOut" class="output">نتایج اینجا می‌آید — دکمه‌ها رو بزن و اعداد رو عوض کن.</pre>
+
+            <div style="margin-top:8px" class="muted">توضیح کوتاه: برای تشخیص گنگ/گویا از روش‌های ساده استفاده شده.</div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <div>پروژهٔ کار و فناوری — تهیه: <strong>نیکان نورمحمدزاده</strong> | کلاس ۹/۳ — مدرسه پورسینا</div>
+      <div style="opacity:0.85;font-size:12px">اپدیت شده در ابان 1404</div>
+    </footer>
+  </div>
+
+<script>
+  // --- Helpers ---
+  function parseList(text){
+    if(!text) return [];
+    return text.split(',')
+               .map(s=>s.trim())
+               .filter(s=>s!=='');
+  }
+
+  function unique(arr){ return Array.from(new Set(arr)); }
+  function toNumIfPossible(x){
+    // try convert fraction or number
+    if(typeof x !== 'string') return x;
+    if(x.includes('/')){
+      const p = x.split('/');
+      if(p.length===2 && !isNaN(Number(p[0])) && !isNaN(Number(p[1]))){
+        return Number(p[0]) / Number(p[1]);
+      }
+    }
+    if(/^sqrt\((.+)\)$/i.test(x)){
+      const inside = x.match(/^sqrt\((.+)\)$/i)[1];
+      if(!isNaN(Number(inside))) return Math.sqrt(Number(inside));
+    }
+    if(!isNaN(Number(x))) return Number(x);
+    return x;
+  }
+
+  function safeJoin(arr){
+    return arr.map(x=>String(x)).join(', ');
+  }
+
+  // --- SETS: basic ops ---
+  function doUnion(){
+    const A = parseList(document.getElementById('A').value);
+    const B = parseList(document.getElementById('B').value);
+    const union = unique(A.concat(B));
+    const out = [];
+    out.push("A = { " + safeJoin(A) + " }");
+    out.push("B = { " + safeJoin(B) + " }");
+    out.push("");
+    out.push("A ∪ B = { " + safeJoin(union) + " }");
+    out.push("تعداد اعضا: " + union.length);
+    setsOut.textContent = out.join("\n");
+  }
+
+  function doInter(){
+    const A = parseList(document.getElementById('A').value);
+    const B = parseList(document.getElementById('B').value);
+    const inter = A.filter(x=>B.includes(x));
+    const out = [];
+    out.push("A = { " + safeJoin(A) + " }");
+    out.push("B = { " + safeJoin(B) + " }");
+    out.push("");
+    out.push("A ∩ B = { " + safeJoin(inter) + " }");
+    out.push("تعداد اعضا: " + inter.length);
+    setsOut.textContent = out.join("\n");
+  }
+
+  function doDiff(){
+    const A = parseList(document.getElementById('A').value);
+    const B = parseList(document.getElementById('B').value);
+    const diff = A.filter(x=>!B.includes(x));
+    const out = [];
+    out.push("A − B = { " + safeJoin(diff) + " }");
+    setsOut.textContent = out.join("\n");
+  }
+
+  function doComplement(){
+    const A = parseList(document.getElementById('A').value);
+    const Uinp = parseList(document.getElementById('U').value);
+    const U = Uinp.length ? Uinp : unique(A.concat(parseList(document.getElementById('B').value)));
+    const comp = U.filter(x=>!A.includes(x));
+    const out = [];
+    out.push("جهان U = { " + safeJoin(U) + " }");
+    out.push("A = { " + safeJoin(A) + " }");
+    out.push("");
+    out.push("A' = U − A = { " + safeJoin(comp) + " }");
+    setsOut.textContent = out.join("\n");
+  }
+
+  // power set generator (limit n<=16)
+  function powerSet(){
+    const A = unique(parseList(document.getElementById('A').value));
+    const n = A.length;
+    if(n > 16){
+      setsOut.textContent = "A بزرگه؛ تولید Power-set تا n=16 فعال شده. مجموعهٔ کوچکتر بده.";
+      return;
+    }
+    const out = [];
+    out.push("A = { " + safeJoin(A) + " }");
+    out.push("تعداد زیرمجموعه‌ها = 2^" + n + " = " + Math.pow(2,n));
+    out.push("");
+    out.push("زیرمجموعه‌ها:");
+    const total = 1 << n;
+    for(let mask=0; mask<total; mask++){
+      const subset = [];
+      for(let i=0;i<n;i++) if(mask & (1<<i)) subset.push(A[i]);
+      out.push("{ " + safeJoin(subset) + " }");
+    }
+    setsOut.textContent = out.join("\n");
+  }
+
+  function countSubsets(){
+    const A = unique(parseList(document.getElementById('A').value));
+    const n = A.length;
+    const total = Math.pow(2,n);
+    setsOut.textContent = "n(A) = " + n + "\nتعداد زیرمجموعه‌ها = 2^n = " + total + "\nزیرمجموعه‌های غیرتهی = " + (total-1);
+  }
+
+  // inclusion-exclusion for A,B,C
+  function incExc(){
+    const A = unique(parseList(document.getElementById('A').value));
+    const B = unique(parseList(document.getElementById('B').value));
+    const C = unique(parseList(document.getElementById('C').value));
+    const nA=A.length,nB=B.length,nC=C.length;
+    const AB = A.filter(x=>B.includes(x)).length;
+    const AC = A.filter(x=>C.includes(x)).length;
+    const BC = B.filter(x=>C.includes(x)).length;
+    const ABC = A.filter(x=>B.includes(x) && C.includes(x)).length;
+    const unionCount = nA + nB + nC - AB - AC - BC + ABC;
+    const out = [];
+    out.push("n(A)="+nA+", n(B)="+nB+", n(C)="+nC);
+    out.push("n(A∩B)="+AB+", n(A∩C)="+AC+", n(B∩C)="+BC+", n(A∩B∩C)="+ABC);
+    out.push("");
+    out.push("طبق قانون شامل-حذف:");
+    out.push("n(A∪B∪C) = n(A)+n(B)+n(C) - n(A∩B) - n(A∩C) - n(B∩C) + n(A∩B∩C)");
+    out.push("→ " + unionCount);
+    setsOut.textContent = out.join("\n");
+  }
+
+  // cartesian product
+  function cartesian(){
+    const A = unique(parseList(document.getElementById('A').value));
+    const B = unique(parseList(document.getElementById('B').value));
+    const pairs = [];
+    A.forEach(a=>B.forEach(b=>pairs.push("(" + a + "," + b + ")")));
+    const out = [];
+    out.push("A × B (" + A.length + " × " + B.length + " = " + (A.length*B.length) + ")");
+    out.push("{ " + safeJoin(pairs) + " }");
+    setsOut.textContent = out.join("\n");
+  }
+
+  // ------ Reals: فصل 2 ------
+  function absAndDist(){
+    const rawA = document.getElementById('num1').value.trim();
+    const rawB = document.getElementById('num2').value.trim();
+    const a = toNumIfPossible(rawA);
+    const b = toNumIfPossible(rawB);
+    const out = [];
+    out.push("x = " + rawA + " → " + (typeof a==='number' ? a : "عبارت نمادی"));
+    out.push("y = " + rawB + " → " + (typeof b==='number' ? b : "عبارت نمادی"));
+    out.push("");
+    if(typeof a === 'number') out.push("|x| = " + Math.abs(a));
+    else out.push("|x| = نمیتوان محاسبه کرد (عبارت نمادی)");
+    if(typeof b === 'number') out.push("|y| = " + Math.abs(b));
+    else out.push("|y| = نمیتوان محاسبه کرد (عبارت نمادی)");
+    if(typeof a === 'number' && typeof b === 'number') out.push("فاصله |x-y| = " + Math.abs(a-b));
+    else out.push("فاصله: یکی از مقادیر عددی نیست — محاسبهٔ عددی نشد.");
+    document.getElementById('realsOut').textContent = out.join("\n");
+  }
+
+  function compareNums(){
+    const rawA = document.getElementById('num1').value.trim();
+    const rawB = document.getElementById('num2').value.trim();
+    const a = toNumIfPossible(rawA);
+    const b = toNumIfPossible(rawB);
+    const out = [];
+    if(typeof a === 'number' && typeof b === 'number'){
+      if(a > b) out.push(a + " > " + b + " → عدد اول بزرگ‌تر است.");
+      else if(a < b) out.push(a + " < " + b + " → عدد دوم بزرگ‌تر است.");
+      else out.push("دو عدد برابرند: " + a);
+    } else {
+      out.push("یکی/هر دو ورودی عددی نیستند؛ مقایسهٔ عددی ممکن نیست.");
+    }
+    document.getElementById('realsOut').textContent = out.join("\n");
+  }
+
+  function roundNums(){
+    const rawA = document.getElementById('num1').value.trim();
+    const rawB = document.getElementById('num2').value.trim();
+    const a = toNumIfPossible(rawA);
+    const b = toNumIfPossible(rawB);
+    const out = [];
+    if(typeof a === 'number') out.push(rawA + " ≈ " + a.toFixed(2));
+    else out.push(rawA + " → عددی نیست یا عبارت نمادی");
+    if(typeof b === 'number') out.push(rawB + " ≈ " + b.toFixed(2));
+    else out.push(rawB + " → عددی نیست یا عبارت نمادی");
+    document.getElementById('realsOut').textContent = out.join("\n");
+  }
+
+  function sciNot(){
+    const rawA = document.getElementById('num1').value.trim();
+    const a = toNumIfPossible(rawA);
+    if(typeof a !== 'number' || !isFinite(a)){
+      document.getElementById('realsOut').textContent = "عدد اول عددی نیست یا نامتناهی؛ نمایش علمی ممکن نیست.";
+      return;
+    }
+    if(a===0){ document.getElementById('realsOut').textContent = "0 = 0 × 10^0"; return; }
+    const e = Math.floor(Math.log10(Math.abs(a)));
+    const m = a / Math.pow(10,e);
+    document.getElementById('realsOut').textContent = rawA + " = " + m.toFixed(6) + " × 10^" + e;
+  }
+
+  // simple rational/irrational detector (heuristic)
+  function detectType(){
+    const rawA = document.getElementById('num1').value.trim();
+    const text = rawA.toLowerCase();
+    const out = [];
+    out.push("ورودی: " + rawA);
+    if(text.includes('/')){
+      const p = rawA.split('/');
+      if(p.length===2 && !isNaN(Number(p[0])) && !isNaN(Number(p[1]))){
+        out.push("تشخیص: کسر — عدد گویا (مثل 22/7)");
+        document.getElementById('realsOut').textContent = out.join("\n");
+        return;
+      }
+    }
+    if(/^sqrt\((.+)\)$/.test(text)){
+      const inside = Number(text.match(/^sqrt\((.+)\)$/)[1]);
+      if(!isNaN(inside)){
+        const root = Math.sqrt(inside);
+        if(Number.isInteger(root)) out.push("√"+inside+" → مربع کامل → عدد حسابی/صحیح");
+        else out.push("√"+inside+" → معمولاً گنگ (مثلاً √2 گنگ)");
+        document.getElementById('realsOut').textContent = out.join("\n"); return;
+      }
+    }
+    if(!isNaN(Number(rawA))){
+      const num = Number(rawA);
+      // try simple check: if decimal has short repeating 3s, consider rational approx (heuristic)
+      if(String(rawA).includes('.')){
+        out.push("عدد اعشاری داده شده — ممکن است گویا یا گنگ. (نیاز به تجزیهٔ بیشتر)");
+      } else {
+        out.push("عدد صحیح — یک عدد حسابی (و گویا)");
+      }
+      document.getElementById('realsOut').textContent = out.join("\n"); return;
+    }
+    out.push("عبارت نمادی — تشخیص دقیق نشد، ولی احتمالاً عبارت غیراصلی یا نمادی است.");
+    document.getElementById('realsOut').textContent = out.join("\n");
+  }
+
+  // --- Tab switching ---
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const which = t.getAttribute('data-tab');
+      document.getElementById('sets').style.display = (which==='sets') ? 'block' : 'none';
+      document.getElementById('reals').style.display = (which==='reals') ? 'block' : 'none';
+    });
+  });
+
+  // small polish: keyboard Enter triggers first button in focused card
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+      if(activeTab==='sets') doUnion();
+      else absAndDist();
+    }
+  });
+
+  // expose some for console if needed (debug)
+  window._n = {doUnion, doInter, doDiff, doComplement, powerSet, countSubsets, incExc, cartesian,
+               absAndDist, compareNums, roundNums, sciNot, detectType};
+</script>
+</body>
+</html>
