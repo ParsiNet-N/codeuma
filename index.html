@@ -1,161 +1,376 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کدیوما - www.codeuma.ir</title>
-    <!-- بارگذاری Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>کدیوما | CodeUma - نسل جدید توسعه وب</title>
+    
+    <!-- فونت وزیرمتن (با وزن‌های کامل) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- آیکون‌های Phosphor (مدرن و مینیمال) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- کتابخانه انیمیشن AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS با کانفیگ اختصاصی -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#030712', /* رنگ پس زمینه خیلی عمیق */
+                            800: '#111827',
+                            glass: 'rgba(17, 24, 39, 0.7)',
+                        },
+                        primary: {
+                            DEFAULT: '#3b82f6',
+                            glow: '#60a5fa',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* استفاده از فونت وزمیرمتن برای بهبود نمایش فارسی */
         body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0d1117; /* پس زمینه تیره شبیه گیت‌هاب */
-            color: #c9d1d9; /* رنگ متن روشن */
-            line-height: 1.8;
+            background-color: #030712;
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        .header-bg {
-            background-color: #161b22;
+        
+        /* اسکرول بار سفارشی */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .accent-color {
-            color: #58a6ff; /* آبی روشن برای تاکید */
+        ::-webkit-scrollbar-track {
+            background: #030712;
         }
-        .btn-primary {
-            background-color: #58a6ff;
-            color: #0d1117;
-            transition: all 0.3s;
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
         }
-        .btn-primary:hover {
-            background-color: #79c0ff;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
         }
-        .skill-card {
-            border: 1px solid #30363d;
-            background-color: #161b22;
+
+        /* افکت نویز ریز برای بافت دادن به پس زمینه */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* استایل خاص برای متون گرادینت */
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* کلاس شیشه‌ای */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-panel:hover {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- نوار ناوبری (Header) --><header class="header-bg shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- لوگو/نام تیم --><div class="text-2xl font-extrabold tracking-tight accent-color">
-                کدیوما (<span class="text-white">CodeUma</span>)
+    <!-- پس زمینه متحرک (Aurora Effect) -->
+    <div class="fixed inset-0 w-full h-full overflow-hidden -z-10">
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
+        <div class="bg-noise absolute inset-0 w-full h-full"></div>
+    </div>
+
+    <!-- نوار ناوبری شناور -->
+    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between gap-8 animate-float" style="animation-duration: 10s;">
+            <a href="#" class="text-xl font-black tracking-tighter flex items-center gap-2">
+                <i class="ph-fill ph-code text-blue-400"></i>
+                <span>کدیوما</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-white transition-colors">داستان من</a>
+                <a href="#skills" class="hover:text-white transition-colors">تکنولوژی‌ها</a>
+                <a href="#projects" class="hover:text-white transition-colors">پروژه‌ها</a>
             </div>
-            <!-- دکمه‌ها (در اینجا فقط تماس با ما) --><nav>
-                <a href="#contact" class="text-sm font-medium hover:accent-color transition duration-150 ease-in-out">تماس با ما</a>
-            </nav>
+            <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-sm font-bold transition-all border border-white/5 flex items-center gap-2">
+                <span>ارتباط</span>
+                <i class="ph-bold ph-arrow-left"></i>
+            </a>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <!-- بخش قهرمان (Hero Section) --><section id="hero" class="py-20 text-center">
-            <div class="max-w-4xl mx-auto px-4">
-                <h1 class="text-5xl md:text-6xl font-black mb-4">
-                    به دنیای <span class="accent-color">کدیوما</span> خوش آمدید
+    <main class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        
+        <!-- Hero Section -->
+        <section class="text-center py-20 lg:py-32 relative">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    آماده برای پروژه‌های جدید
+                </span>
+                
+                <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tight">
+                    خلق تجربه دیجیتال <br>
+                    <span class="text-gradient">فراتر از تصور</span>
                 </h1>
-                <p class="text-xl text-gray-400 mb-8">
-                    تیم توسعه تک‌نفره به رهبری <span class="text-white">نیکان نورمحمدزاده</span>
+                
+                <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10 font-light">
+                    توسعه‌دهنده ۱۶ ساله، متخصص در تبدیل ایده‌های پیچیده به رابط‌های کاربری ساده، زیبا و مقیاس‌پذیر.
                 </p>
-                <a href="#about" class="btn-primary py-3 px-8 rounded-xl text-lg font-bold shadow-xl inline-block">
-                    بیشتر درباره من
-                </a>
-                <p class="mt-4 text-sm text-gray-500">
-                    وبسایت رسمی: www.codeuma.ir
-                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#contact" class="group relative px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg overflow-hidden transition-transform hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                        شروع همکاری
+                    </a>
+                    <a href="#about" class="px-8 py-4 glass-panel rounded-2xl font-bold text-lg hover:bg-white/5 transition-all text-gray-300">
+                        مشاهده رزومه
+                    </a>
+                </div>
             </div>
-        </section>
-
-        <!-- بخش درباره من (About Me) --><section id="about" class="py-16 md:py-24 header-bg">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-extrabold text-center mb-12">درباره من</h2>
-                <div class="flex flex-col md:flex-row items-center gap-10">
-                    
-                    <!-- جایگاه عکس --><div class="flex-shrink-0 w-48 h-48 rounded-full overflow-hidden shadow-2xl ring-4 ring-[#58a6ff]">
-                        <!-- عکس نیکان را اینجا قرار دهید! --><img id="user-photo" src="https://uploadkon.ir/uploads/81b211_25photo21972856322.jpg" alt="عکس نیکان نورمحمدزاده" 
-                             class="w-full h-full object-cover" 
-                             onerror="this.src='https://placehold.co/200x200/58a6ff/161b22?text=عکس+نیکان'">
-                    </div>
-
-                    <!-- متن معرفی --><div class="md:text-right text-center">
-                        <h3 class="text-2xl font-bold mb-3 accent-color">نیکان نورمحمدزاده</h3>
-                        <p class="text-lg text-gray-300">
-                            من نیکان نورمحمدزاده هستم، یک توسعه‌دهنده ۱۶ ساله که در **مدرسه تیزهوشان** مشغول به تحصیل بوده و **در زمینه کدنویسی مهارت بالایی دارم**. اشتیاق من به خلق و کدنویسی، کدیوما را به پلتفرمی برای تبدیل ایده‌ها به واقعیت تبدیل کرده است. با اینکه تیم ما تک‌نفره است، اما تمام تلاش من بر ارائه بهترین کیفیت و نوآوری متمرکز است. به عنوان توسعه‌دهنده کدیوما، من مسئولیت کامل فرآیند از طراحی تا پیاده‌سازی را بر عهده دارم.
-                        </p>
-                        <p class="mt-4 text-gray-400 text-sm">
-                            <span class="font-bold">سن:</span> ۱۶ سال | <span class="font-bold">پلتفرم:</span> www.codeuma.ir
-                        </p>
+            
+            <!-- Abstract Graphic -->
+            <div class="mt-20 relative mx-auto w-full max-w-4xl h-64 md:h-96 glass-panel rounded-3xl overflow-hidden border border-white/10 shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+                <div class="absolute inset-0 flex items-center justify-center font-mono text-xs md:text-sm text-gray-500 opacity-30 leading-relaxed p-8 overflow-hidden select-none">
+                    &lt;div class="future-is-now"&gt;<br>
+                      &nbsp;&nbsp;const innovation = new CodeUma();<br>
+                      &nbsp;&nbsp;innovation.deploy({<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;speed: 'max',<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;design: 'pixel-perfect'<br>
+                      &nbsp;&nbsp;});<br>
+                    &lt;/div&gt;
+                </div>
+                <!-- Simulated Code Window UI -->
+                <div class="absolute top-4 left-4 right-4 h-full">
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- بخش توانمندی‌ها (Abilities/Skills) --><section id="skills" class="py-16 md:py-24">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-extrabold text-center mb-12">توانمندی‌های اصلی</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- کارت توانمندی ۱ --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">⚙️</div>
-                        <h4 class="text-xl font-bold mb-2">توسعه فرانت‌اند</h4>
-                        <p class="text-gray-400 text-sm">تسلط بر HTML، CSS (به ویژه Tailwind CSS) و JavaScript برای ساخت رابط‌های کاربری مدرن و واکنش‌گرا.</p>
+
+        <!-- Bento Grid About Section -->
+        <section id="about" class="py-24">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">دنیای <span class="text-blue-400">کدیوما</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+                
+                <!-- Card 1: Large Photo (جابجایی به بالا) -->
+                <div class="glass-panel rounded-3xl p-2 md:col-span-2 row-span-2 relative group overflow-hidden" data-aos="fade-right">
+                    <img src="https://uploadkon.ir/uploads/81b211_25photo21972856322.jpg" alt="Nikan" class="w-full h-full object-cover rounded-2xl transition-all duration-700 ease-in-out transform group-hover:scale-105">
+                    <div class="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
+                        <p class="font-bold text-white">نیکان نورمحمدزاده</p>
+                        <p class="text-xs text-gray-300">Full-Stack Developer</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Bio (جابجایی به بالا، کنار عکس) -->
+                <div class="glass-panel rounded-3xl p-8 md:col-span-2 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i class="ph-duotone ph-student text-yellow-400"></i>
+                        تیزهوشان & کدنویسی
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        تحصیل در مدرسه تیزهوشان به من یاد داد که چگونه مسائل پیچیده را تحلیل کنم. اما کدنویسی به من قدرت ساختن داد. من فقط کد نمی‌زنم؛ من معماری سیستم‌های فردا را طراحی می‌کنم. تمرکز من بر پرفورمنس بالا و رابط کاربری مینیمال است.
+                    </p>
+                </div>
+
+                <!-- Card 2: Age/Stat (جابجایی به پایین) -->
+                <div class="glass-panel rounded-3xl p-8 flex flex-col justify-center items-center text-center relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <span class="text-7xl font-black text-white mb-2">۱۶</span>
+                    <span class="text-gray-400 uppercase tracking-widest text-sm font-bold">سال سن</span>
+                    <p class="text-xs text-gray-500 mt-2">اما با تجربه یک ارشد</p>
+                </div>
+
+                <!-- Card 3: Location (با پرچم شیر و خورشید) -->
+                <div class="glass-panel rounded-3xl p-0 relative overflow-hidden flex flex-col justify-between group" data-aos="fade-left" data-aos-delay="300">
+                    <!-- متن روی کارت -->
+                    <div class="absolute top-0 right-0 p-6 z-20 w-full flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-200 text-sm mb-1 bg-black/40 px-2 py-0.5 rounded-md inline-block">موقعیت</p>
+                            <p class="text-2xl font-bold text-white drop-shadow-md bg-black/40 px-2 py-1 rounded-md mt-1 inline-block">ایران</p>
+                        </div>
                     </div>
 
-                    <!-- کارت توانمندی ۲ --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">💡</div>
-                        <h4 class="text-xl font-bold mb-2">حل مسئله و منطق</h4>
-                        <p class="text-gray-400 text-sm">توانایی شناسایی چالش‌ها و ارائه راه‌حل‌های کارآمد و بهینه با استفاده از الگوریتم‌ها و ساختارهای داده.</p>
+                    <!-- پرچم شیر و خورشید -->
+                    <div class="w-full h-full absolute inset-0 bg-black">
+                        <!-- استفاده از نام فایل عکسی که ارسال کردید -->
+                        <img src="1000082434.png" 
+                             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/State_flag_of_Iran_%281964%E2%80%931980%29.svg/800px-State_flag_of_Iran_%281964%E2%80%931980%29.svg.png'"
+                             alt="Lion and Sun Flag" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out">
                     </div>
+                </div>
 
-                    <!-- کارت توانمندی ۳ --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">🎨</div>
-                        <h4 class="text-xl font-bold mb-2">طراحی UI/UX پایه</h4>
-                        <p class="text-gray-400 text-sm">درک اصول تجربه کاربری و طراحی بصری برای ایجاد محصولاتی که استفاده از آن‌ها لذت‌بخش باشد.</p>
-                    </div>
-
-                    <!-- کارت توانمندی ۴ (قابل ویرایش توسط نیکان) --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">💻</div>
-                        <h4 class="text-xl font-bold mb-2">مفاهیم بک‌اند (پایه)</h4>
-                        <p class="text-gray-400 text-sm">آشنایی اولیه با مفاهیم سرور، دیتابیس‌ها و نحوه کارکرد APIها برای ساخت برنامه‌های کامل.</p>
-                    </div>
-                    
-                    <!-- کارت توانمندی ۵ (قابل ویرایش توسط نیکان) --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">📚</div>
-                        <h4 class="text-xl font-bold mb-2">یادگیری سریع و انطباق</h4>
-                        <p class="text-gray-400 text-sm">توانایی بالا در فراگیری سریع تکنولوژی‌های جدید و انطباق با محیط‌های برنامه‌نویسی مختلف.</p>
-                    </div>
-
-                    <!-- کارت توانمندی ۶ (قابل ویرایش توسط نیکان) --><div class="skill-card p-6 rounded-xl shadow-xl hover:shadow-2xl hover:border-accent-color transition duration-300">
-                        <div class="text-3xl mb-3 accent-color">✨</div>
-                        <h4 class="text-xl font-bold mb-2">خلاقیت و نوآوری</h4>
-                        <p class="text-gray-400 text-sm">استفاده از خلاقیت برای ارائه راهکارهای منحصر به فرد و متفاوت در پروژه‌ها.</p>
-                    </div>
-
+                <!-- Card 5: Tech Stack (جابجایی به پایین) -->
+                <div class="glass-panel rounded-3xl p-6 md:col-span-2 flex items-center justify-around flex-wrap gap-4" data-aos="fade-left" data-aos-delay="400">
+                    <i class="ph-fill ph-html-5 text-4xl text-orange-500 hover:scale-125 transition-transform" title="HTML5"></i>
+                    <i class="ph-fill ph-file-css text-4xl text-blue-500 hover:scale-125 transition-transform" title="CSS3"></i>
+                    <i class="ph-bold ph-file-js text-4xl text-yellow-400 hover:scale-125 transition-transform" title="JavaScript"></i>
+                    <i class="ph-fill ph-coffee text-4xl text-red-600 hover:scale-125 transition-transform" title="Java"></i>
+                    <i class="ph-fill ph-atom text-4xl text-cyan-400 hover:scale-125 transition-transform" title="React Concept"></i>
+                    <i class="ph-fill ph-database text-4xl text-green-400 hover:scale-125 transition-transform" title="Database"></i>
+                    <i class="ph-fill ph-git-branch text-4xl text-red-400 hover:scale-125 transition-transform" title="Git"></i>
                 </div>
             </div>
         </section>
 
-        <!-- بخش تماس با ما (Contact) --><section id="contact" class="py-16 md:py-24 text-center header-bg">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="text-3xl font-extrabold mb-4">با کدیوما در ارتباط باشید</h2>
-                <p class="text-lg text-gray-400 mb-8">
-                    برای هرگونه همکاری یا ارتباط مستقیم، لطفاً از طریق تلگرام با آیدی زیر پیام دهید:
-                </p>
-                <!-- دکمه لینک تلگرام --><a href="https://t.me/ParsiHelp" target="_blank" class="btn-primary py-3 px-8 rounded-xl text-lg font-bold inline-block">
-                    پیام در تلگرام (@ParsiHelp)
+        <!-- Services / Skills Section -->
+        <section id="skills" class="py-24 relative">
+            <div class="absolute left-0 top-1/2 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px]"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">جعبه ابزار <span class="text-gradient">قدرتمند</span></h2>
+                    <p class="text-gray-400 max-w-md">تکنولوژی‌هایی که برای ساخت آینده از آنها استفاده می‌کنم.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors mt-4 md:mt-0">
+                    مشاهده همه مهارت‌ها <i class="ph-bold ph-arrow-left"></i>
                 </a>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill 1: HTML & CSS -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group cursor-default" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-html-5 text-3xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">HTML5 & CSS3</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        استاد در ساختاردهی معناگرا (Semantic) و طراحی بصری با استانداردهای مدرن وب.
+                    </p>
+                </div>
+
+                <!-- Skill 2: Java (New) -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group cursor-default" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-2xl bg-red-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-coffee text-3xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Java Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        توسعه برنامه‌های قدرتمند و شیءگرا با زبان جاوا برای حل مسائل پیچیده بک‌اند.
+                    </p>
+                </div>
+
+                <!-- Skill 3: JS & Logic -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group cursor-default" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-2xl bg-yellow-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-lightning text-3xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">JavaScript & Logic</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        نوشتن الگوریتم‌های بهینه و تعاملی کردن صفحات وب با قدرت جاوااسکریپت مدرن.
+                    </p>
+                </div>
+
+                <!-- Skill 4: Deployment -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group cursor-default" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-rocket-launch text-3xl text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Rapid Deployment</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        تبدیل ایده به محصول نهایی (MVP) در کوتاه‌ترین زمان ممکن با استانداردهای جهانی.
+                    </p>
+                </div>
+            </div>
         </section>
-        
+
+        <!-- CTA / Contact Section -->
+        <section id="contact" class="py-24">
+            <div class="glass-panel rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-500/10 to-transparent"></div>
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/30 rounded-full blur-[80px]"></div>
+
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-black mb-6">ایده بعدی شما <br>شایسته بهترین اجراست</h2>
+                    <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                        اگر دنبال کیفیت معمولی هستید، من گزینه مناسبی نیستم. اما اگر می‌خواهید متمایز باشید، بیایید صحبت کنیم.
+                    </p>
+                    
+                    <a href="https://t.me/ParsiHelp" target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-xl shadow-white/10">
+                        <i class="ph-fill ph-telegram-logo text-blue-500 text-2xl"></i>
+                        شروع گفتگو در تلگرام
+                    </a>
+                    
+                    <p class="mt-8 text-sm text-gray-500 font-mono">ParsiHelp@</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- پاورقی (Footer) --><footer class="py-8 text-center border-t border-gray-800">
-        <p class="text-sm text-gray-500">
-            &copy; 2025 کدیوما (CodeUma) - توسعه داده شده توسط نیکان نورمحمدزاده
-        </p>
-        <p class="text-sm text-gray-500 mt-1">
-            وبسایت رسمی: <a href="http://www.codeuma.ir" class="hover:accent-color" target="_blank">www.codeuma.ir</a>
-        </p>
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-black/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-right">
+                <span class="text-2xl font-black tracking-tighter text-white block mb-2">کدیوما</span>
+                <p class="text-sm text-gray-500">© 2025 طراحی شده با عشق و کد توسط نیکان.</p>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph-fill ph-github-logo text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph-fill ph-twitter-logo text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Script for Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // فعال‌سازی انیمیشن‌های اسکرول
+        AOS.init({
+            once: true, // انیمیشن فقط یک بار اجرا شود
+            offset: 100, // فاصله از پایین صفحه برای شروع انیمیشن
+            duration: 800, // مدت زمان انیمیشن
+            easing: 'ease-out-cubic',
+        });
+    </script>
 </body>
 </html>
