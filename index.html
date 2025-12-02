@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>کدیوما | CodeUma - نسل جدید توسعه وب</title>
+    <title>کدیوما | CodeUma - نیکان نورمحمدزاده</title>
     
-    <!-- فونت وزیرمتن (با وزن‌های کامل) -->
+    <!-- فونت وزیرمتن -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- آیکون‌های Phosphor -->
@@ -28,11 +28,13 @@
                         dark: {
                             900: '#030712',
                             800: '#111827',
+                            danish: '#C60C30', /* قرمز دانمارکی */
                         }
                     },
                     animation: {
                         'blob': 'blob 10s infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         blob: {
@@ -55,10 +57,9 @@
         body {
             background-color: #030712;
             color: #ffffff;
-            overflow-x: hidden; /* جلوگیری از اسکرول افقی ناخواسته */
+            overflow-x: hidden;
         }
         
-        /* استایل‌های شیشه‌ای */
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
@@ -73,6 +74,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* استایل خاص برای پرچم دانمارک */
+        .danish-flag-bg {
+            background: linear-gradient(135deg, #C60C30 0%, #8a061f 100%);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -81,7 +87,7 @@
     <div class="fixed inset-0 w-full h-full overflow-hidden -z-10">
         <div class="absolute top-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[128px] opacity-20 animate-blob"></div>
         <div class="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/3 w-64 h-64 md:w-96 md:h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-64 h-64 md:w-96 md:h-96 bg-red-600 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[128px] opacity-10 animate-blob animation-delay-4000"></div>
     </div>
 
     <!-- نوار ناوبری -->
@@ -92,16 +98,14 @@
                 <span class="hidden sm:inline">کدیوما</span>
             </a>
             
-            <!-- لینک‌ها در موبایل فقط آیکون، در دسکتاپ متن -->
             <div class="flex items-center gap-4 md:gap-6 text-xl md:text-sm font-medium text-gray-300">
-                <a href="#about" class="hover:text-white transition-colors" title="درباره من"><i class="ph-bold ph-user sm:hidden"></i><span class="hidden sm:inline">داستان من</span></a>
-                <a href="#skills" class="hover:text-white transition-colors" title="مهارت‌ها"><i class="ph-bold ph-lightning sm:hidden"></i><span class="hidden sm:inline">تکنولوژی‌ها</span></a>
-                <a href="#projects" class="hover:text-white transition-colors" title="پروژه‌ها"><i class="ph-bold ph-briefcase sm:hidden"></i><span class="hidden sm:inline">پروژه‌ها</span></a>
+                <a href="#about" class="hover:text-white transition-colors"><i class="ph-bold ph-user sm:hidden"></i><span class="hidden sm:inline">داستان من</span></a>
+                <a href="#skills" class="hover:text-white transition-colors"><i class="ph-bold ph-lightning sm:hidden"></i><span class="hidden sm:inline">تکنولوژی‌ها</span></a>
+                <a href="#projects" class="hover:text-white transition-colors"><i class="ph-bold ph-briefcase sm:hidden"></i><span class="hidden sm:inline">پروژه‌ها</span></a>
             </div>
 
             <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-3 py-2 md:px-5 rounded-full text-xs md:text-sm font-bold transition-all border border-white/5 flex items-center gap-2">
                 <span class="hidden sm:inline">ارتباط</span>
-                <i class="ph-bold ph-telegram-logo sm:hidden text-lg"></i>
                 <i class="ph-bold ph-arrow-left hidden sm:inline"></i>
             </a>
         </div>
@@ -117,16 +121,16 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                     </span>
-                    آماده برای پروژه‌های جدید
+                    International Developer
                 </span>
                 
                 <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 md:mb-6 leading-tight tracking-tight">
-                    خلق تجربه دیجیتال <br>
-                    <span class="text-gradient">فراتر از تصور</span>
+                    از کپنهاگن تا تهران <br>
+                    <span class="text-gradient">کدنویسی بدون مرز</span>
                 </h1>
                 
                 <p class="text-base md:text-xl text-gray-400 max-w-xl mx-auto mb-8 font-light px-2">
-                    توسعه‌دهنده ۱۶ ساله، متخصص در تبدیل ایده‌های پیچیده به رابط‌های کاربری ساده، زیبا و مقیاس‌پذیر.
+                    توسعه‌دهنده ۱۶ ساله با ریشه‌های اسکاندیناوی. ترکیب نظم دانمارکی و خلاقیت ایرانی برای خلق تجربه‌های دیجیتال منحصر به فرد.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto px-4">
@@ -140,115 +144,104 @@
             </div>
         </section>
 
-        <!-- Bento Grid Section (کاملا ریسپانسیو) -->
+        <!-- Bento Grid Section -->
         <section id="about" class="py-12 md:py-24">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-10 md:mb-16" data-aos="fade-up">دنیای <span class="text-blue-400">کدیوما</span></h2>
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-10 md:mb-16" data-aos="fade-up">دنیای <span class="text-blue-400">چند فرهنگی</span> من</h2>
             
-            <!-- 
-               تغییرات ریسپانسیو: 
-               در موبایل (پیش‌فرض) ستون‌ها 1 است و ارتفاع خودکار (auto).
-               در md (تبلت) به بالا، ارتفاع سطرها ثابت 200px می‌شود.
-            -->
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:auto-rows-[200px]">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:auto-rows-[220px]">
                 
-                <!-- Card 1: Photo -->
-                <!-- در موبایل ارتفاع ثابت گرفت تا عکس دفرمه نشود -->
-                <div class="glass-panel rounded-3xl p-2 md:col-span-2 md:row-span-2 relative group overflow-hidden h-[300px] md:h-auto" data-aos="fade-right">
-                    <img src="https://uploadkon.ir/uploads/81b211_25photo21972856322.jpg" alt="Nikan" class="w-full h-full object-cover rounded-2xl transition-all duration-700 hover:scale-105">
-                    <div class="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-                        <p class="font-bold text-white text-sm md:text-base">نیکان نورمحمدزاده</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Bio -->
-                <div class="glass-panel rounded-3xl p-6 md:p-8 md:col-span-2 flex flex-col justify-center min-h-[200px]" data-aos="fade-up">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3 flex items-center gap-2">
-                        <i class="ph-duotone ph-student text-yellow-400"></i>
-                        کدنویسی & خلاقیت
-                    </h3>
-                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                        من فقط کد نمی‌زنم؛ معماری سیستم‌های فردا را طراحی می‌کنم. تمرکز من بر پرفورمنس بالا و رابط کاربری مینیمال است تا تجربه‌ای بی‌نقص بسازم.
-                    </p>
-                </div>
-
-                <!-- Card 3: Age -->
-                <div class="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center group min-h-[150px]" data-aos="fade-up">
-                    <span class="text-5xl md:text-7xl font-black text-white mb-1">۱۶</span>
-                    <span class="text-gray-400 uppercase tracking-widest text-xs font-bold">سال سن</span>
-                </div>
-
-                <!-- Card 4: Location (Updated Image) -->
-                <div class="glass-panel rounded-3xl p-0 relative overflow-hidden flex flex-col justify-between group min-h-[200px]" data-aos="fade-left">
-                    <div class="absolute top-0 right-0 p-5 z-20 w-full flex justify-between items-start pointer-events-none">
-                        <div>
-                            <p class="text-gray-200 text-xs bg-black/50 px-2 py-1 rounded backdrop-blur-sm">موقعیت</p>
-                            <p class="text-xl font-bold text-white mt-1 drop-shadow-md">ایران</p>
+                <!-- Card 1: Creative Profile (جایگزین عکس) -->
+                <div class="glass-panel rounded-3xl p-2 md:col-span-2 md:row-span-2 relative group overflow-hidden h-[300px] md:h-auto flex items-center justify-center" data-aos="fade-right">
+                    <!-- پس‌زمینه انتزاعی و متحرک -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-red-600/20 opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500/30 rounded-full blur-3xl animate-pulse-slow"></div>
+                    
+                    <!-- آیکون و متن مرکزی -->
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-500">
+                            <i class="ph-duotone ph-user-circle-gear text-5xl text-blue-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-1 drop-shadow-lg">نیکان نورمحمدزاده</h3>
+                        <p class="text-sm text-blue-200 font-medium tracking-wider">توسعه‌دهنده فول‌اسنک</p>
+                        <div class="mt-4 flex justify-center gap-2">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">خلاق</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">نوآور</span>
                         </div>
                     </div>
 
-                    <div class="w-full h-full absolute inset-0 bg-gray-900">
-                        <!-- استفاده از عکس نقشه ایران با پرچم داخلش -->
-                        <img src="1000082409.png" 
-                             class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110" 
-                             alt="Iran Map Flag">
+                    <!-- برچسب پایین -->
+                    <div class="absolute bottom-4 inset-x-4 flex justify-between items-center">
+                        <div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-300 flex items-center gap-2">
+                            <i class="ph-bold ph-map-pin"></i>
+                            کپنهاگن / تهران
+                        </div>
+                        <i class="ph-duotone ph-code text-2xl text-white/50"></i>
                     </div>
+                </div>
+
+                <!-- Card 2: Copenhagen Origins -->
+                <div class="glass-panel rounded-3xl p-6 md:col-span-2 flex flex-col justify-center relative overflow-hidden group min-h-[220px]" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full blur-3xl -z-10 group-hover:bg-red-600/20 transition-colors"></div>
+                    
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🇩🇰</span>
+                        <h3 class="text-xl md:text-2xl font-black text-white">زاده کپنهاگن</h3>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed text-justify">
+                        متولد سرزمین وایکینگ‌ها؛ جایی که <b>دموکراسی</b>، <b>رفاه اجتماعی</b> و <b>آزادی</b> در بالاترین سطح جهانی است. فرهنگ دانمارک به من "هوگه" (Hygge) یا هنر لذت بردن از سادگی، و طراحی مینیمال را آموخت. من این کیفیت اسکاندیناوی را با اشتیاق ایرانی ترکیب می‌کنم.
+                    </p>
+                </div>
+
+                <!-- Card 3: Location (Split Maps) -->
+                <div class="glass-panel rounded-3xl p-0 relative overflow-hidden flex flex-col group min-h-[220px]" data-aos="fade-left">
+                    <!-- Label Overlay -->
+                    <div class="absolute top-0 left-0 w-full p-4 z-20 flex justify-between text-xs font-bold pointer-events-none">
+                        <span class="bg-red-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm">زادگاه</span>
+                        <span class="bg-green-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm flex items-center gap-1"><span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>اکنون</span>
+                    </div>
+
+                    <!-- Maps Container -->
+                    <div class="flex h-full w-full relative">
+                        <!-- Denmark Map (Left) -->
+                        <div class="w-1/2 h-full bg-gray-900 relative border-l border-white/10">
+                            <img src="1000082474.png" class="w-full h-full object-contain p-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500" alt="Denmark Map">
+                            <div class="absolute bottom-2 left-2 text-[10px] text-gray-500 font-mono">CPH</div>
+                        </div>
+                        
+                        <!-- Iran Map (Right) -->
+                        <div class="w-1/2 h-full bg-gray-800 relative">
+                            <img src="1000082409.png" class="w-full h-full object-contain p-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500" alt="Iran Map">
+                            <div class="absolute bottom-2 right-2 text-[10px] text-gray-500 font-mono">IRN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Age -->
+                <div class="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center group min-h-[150px]" data-aos="fade-up">
+                    <span class="text-5xl md:text-7xl font-black text-white mb-1">۱۶</span>
+                    <span class="text-gray-400 uppercase tracking-widest text-xs font-bold">سال سن</span>
+                    <p class="text-[10px] text-gray-500 mt-2">خلاقیت جوان، استاندارد جهانی</p>
                 </div>
 
                 <!-- Card 5: Tech Stack -->
                 <div class="glass-panel rounded-3xl p-6 md:col-span-2 flex items-center justify-around flex-wrap gap-4 min-h-[150px]" data-aos="fade-left">
-                    <i class="ph-fill ph-html-5 text-3xl md:text-4xl text-orange-500"></i>
-                    <i class="ph-fill ph-file-css text-3xl md:text-4xl text-blue-500"></i>
-                    <i class="ph-bold ph-file-js text-3xl md:text-4xl text-yellow-400"></i>
-                    <i class="ph-fill ph-coffee text-3xl md:text-4xl text-red-600"></i>
-                    <i class="ph-fill ph-database text-3xl md:text-4xl text-green-400"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-12 md:py-24">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center md:text-right">مهارت‌های تخصصی</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <!-- Skill Items -->
-                <div class="glass-panel p-6 rounded-2xl" data-aos="zoom-in">
-                    <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4 text-orange-400 text-2xl">
-                        <i class="ph-duotone ph-html-5"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">HTML & CSS</h3>
-                    <p class="text-gray-400 text-sm">ساختاردهی استاندارد وب.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="w-12 h-12 rounded-xl bg-red-600/20 flex items-center justify-center mb-4 text-red-500 text-2xl">
-                        <i class="ph-duotone ph-coffee"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Java</h3>
-                    <p class="text-gray-400 text-sm">برنامه‌نویسی بک‌اند قدرتمند.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-4 text-yellow-400 text-2xl">
-                        <i class="ph-duotone ph-lightning"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">JavaScript</h3>
-                    <p class="text-gray-400 text-sm">الگوریتم‌های تعاملی وب.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400 text-2xl">
-                        <i class="ph-duotone ph-rocket-launch"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Deploy</h3>
-                    <p class="text-gray-400 text-sm">راه اندازی سریع پروژه.</p>
+                    <i class="ph-fill ph-html-5 text-3xl md:text-4xl text-orange-500 hover:scale-110 transition-transform"></i>
+                    <i class="ph-fill ph-file-css text-3xl md:text-4xl text-blue-500 hover:scale-110 transition-transform"></i>
+                    <i class="ph-bold ph-file-js text-3xl md:text-4xl text-yellow-400 hover:scale-110 transition-transform"></i>
+                    <i class="ph-fill ph-coffee text-3xl md:text-4xl text-red-600 hover:scale-110 transition-transform"></i>
+                    <i class="ph-fill ph-database text-3xl md:text-4xl text-green-400 hover:scale-110 transition-transform"></i>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
         <section id="contact" class="py-12">
-            <div class="glass-panel rounded-3xl p-8 md:p-16 text-center">
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6">شروع یک همکاری خاص</h2>
-                <a href="https://t.me/ParsiHelp" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm md:text-lg hover:scale-105 transition-transform mt-4">
+            <div class="glass-panel rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-red-600/5 to-transparent pointer-events-none"></div>
+                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6">همکاری با استانداردهای اسکاندیناوی</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">کیفیت، زمان‌بندی دقیق و طراحی مینیمال؛ این‌ها قول من به شماست.</p>
+                <a href="https://t.me/ParsiHelp" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-sm md:text-lg hover:scale-105 transition-transform shadow-lg shadow-white/10">
                     <i class="ph-fill ph-telegram-logo text-blue-500 text-xl"></i>
                     ارسال پیام در تلگرام
                 </a>
@@ -257,13 +250,14 @@
 
     </main>
 
-    <footer class="border-t border-white/5 bg-black/50 backdrop-blur-xl py-8 text-center text-gray-500 text-sm">
-        <p>© 2025 توسعه توسط نیکان.</p>
+    <footer class="border-t border-white/5 bg-black/50 backdrop-blur-xl py-8 text-center text-gray-500 text-sm flex flex-col gap-2">
+        <p>© 2025 توسعه داده شده توسط نیکان نورمحمدزاده.</p>
+        <p class="text-xs opacity-50">From Copenhagen with Love to Iran ❤️</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 50, duration: 600 });
+        AOS.init({ once: true, offset: 50, duration: 800 });
     </script>
 </body>
 </html>
