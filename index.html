@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>کدیوما | CodeUma - نیکان نورمحمدزاده</title>
     
-    <!-- فونت وزیرمتن -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- فونت وزیرمتن (برای فارسی) و Inter (برای انگلیسی/دانمارکی) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <!-- آیکون‌های Phosphor -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -23,12 +23,13 @@
                 extend: {
                     fontFamily: {
                         sans: ['Vazirmatn', 'sans-serif'],
+                        latin: ['Inter', 'sans-serif'],
                     },
                     colors: {
                         dark: {
                             900: '#030712',
                             800: '#111827',
-                            danish: '#C60C30', /* قرمز دانمارکی */
+                            danish: '#C60C30',
                         }
                     },
                     animation: {
@@ -58,8 +59,17 @@
             background-color: #030712;
             color: #ffffff;
             overflow-x: hidden;
+            transition: font-family 0.3s ease;
         }
         
+        /* تغییر فونت بر اساس زبان */
+        html[lang="en"] body, html[lang="da"] body {
+            font-family: 'Inter', sans-serif;
+        }
+        html[lang="fa"] body {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
@@ -75,9 +85,11 @@
             background-clip: text;
         }
 
-        /* استایل خاص برای پرچم دانمارک */
-        .danish-flag-bg {
-            background: linear-gradient(135deg, #C60C30 0%, #8a061f 100%);
+        /* دکمه زبان فعال */
+        .lang-btn.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -92,22 +104,36 @@
 
     <!-- نوار ناوبری -->
     <nav class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-        <div class="glass-panel rounded-full px-4 py-2 md:px-6 md:py-3 flex items-center justify-between gap-4 md:gap-8 max-w-[95%] w-auto animate-float">
-            <a href="#" class="text-lg md:text-xl font-black tracking-tighter flex items-center gap-2">
+        <div class="glass-panel rounded-full px-4 py-2 md:px-6 md:py-3 flex items-center justify-between gap-4 md:gap-8 w-full max-w-4xl animate-float">
+            
+            <!-- لوگو -->
+            <a href="#" class="text-lg md:text-xl font-black tracking-tighter flex items-center gap-2 min-w-max">
                 <i class="ph-fill ph-code text-blue-400"></i>
-                <span class="hidden sm:inline">کدیوما</span>
+                <span class="hidden sm:inline">CodeUma</span>
             </a>
             
-            <div class="flex items-center gap-4 md:gap-6 text-xl md:text-sm font-medium text-gray-300">
-                <a href="#about" class="hover:text-white transition-colors"><i class="ph-bold ph-user sm:hidden"></i><span class="hidden sm:inline">داستان من</span></a>
-                <a href="#skills" class="hover:text-white transition-colors"><i class="ph-bold ph-lightning sm:hidden"></i><span class="hidden sm:inline">تکنولوژی‌ها</span></a>
-                <a href="#projects" class="hover:text-white transition-colors"><i class="ph-bold ph-briefcase sm:hidden"></i><span class="hidden sm:inline">پروژه‌ها</span></a>
+            <!-- لینک‌های وسط -->
+            <div class="flex items-center gap-3 md:gap-6 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-white transition-colors" data-i18n="nav_story">داستان من</a>
+                <a href="#skills" class="hover:text-white transition-colors hidden sm:block" data-i18n="nav_tech">تکنولوژی‌ها</a>
+                <a href="#projects" class="hover:text-white transition-colors hidden sm:block" data-i18n="nav_projects">پروژه‌ها</a>
             </div>
 
-            <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-3 py-2 md:px-5 rounded-full text-xs md:text-sm font-bold transition-all border border-white/5 flex items-center gap-2">
-                <span class="hidden sm:inline">ارتباط</span>
-                <i class="ph-bold ph-arrow-left hidden sm:inline"></i>
-            </a>
+            <!-- بخش سمت چپ: تغییر زبان و دکمه تماس -->
+            <div class="flex items-center gap-3">
+                
+                <!-- تغییر زبان -->
+                <div class="glass-panel rounded-full p-1 flex items-center gap-1 text-[10px] md:text-xs">
+                    <button onclick="changeLanguage('en')" class="lang-btn px-2 py-1 rounded-full transition-all hover:bg-white/10" data-lang="en">EN</button>
+                    <button onclick="changeLanguage('fa')" class="lang-btn px-2 py-1 rounded-full transition-all hover:bg-white/10 active" data-lang="fa">FA</button>
+                    <button onclick="changeLanguage('da')" class="lang-btn px-2 py-1 rounded-full transition-all hover:bg-white/10" data-lang="da">DA</button>
+                </div>
+
+                <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-3 py-2 md:px-5 rounded-full text-xs md:text-sm font-bold transition-all border border-white/5 flex items-center gap-2 whitespace-nowrap">
+                    <span class="hidden sm:inline" data-i18n="nav_contact">ارتباط</span>
+                    <i class="ph-bold ph-paper-plane-tilt"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -125,19 +151,19 @@
                 </span>
                 
                 <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 md:mb-6 leading-tight tracking-tight">
-                    از کپنهاگن تا تهران <br>
-                    <span class="text-gradient">کدنویسی بدون مرز</span>
+                    <span data-i18n="hero_title_1">از کپنهاگن تا تهران</span> <br>
+                    <span class="text-gradient" data-i18n="hero_title_2">کدنویسی بدون مرز</span>
                 </h1>
                 
-                <p class="text-base md:text-xl text-gray-400 max-w-xl mx-auto mb-8 font-light px-2">
+                <p class="text-base md:text-xl text-gray-400 max-w-xl mx-auto mb-8 font-light px-2" data-i18n="hero_desc">
                     توسعه‌دهنده ۱۶ ساله با ریشه‌های اسکاندیناوی. ترکیب نظم دانمارکی و خلاقیت ایرانی برای خلق تجربه‌های دیجیتال منحصر به فرد.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto px-4">
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-xl font-bold text-base hover:scale-105 transition-transform text-center">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-xl font-bold text-base hover:scale-105 transition-transform text-center" data-i18n="hero_btn_collab">
                         شروع همکاری
                     </a>
-                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 glass-panel rounded-xl font-bold text-base hover:bg-white/5 transition-all text-gray-300 text-center">
+                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 glass-panel rounded-xl font-bold text-base hover:bg-white/5 transition-all text-gray-300 text-center" data-i18n="hero_btn_resume">
                         مشاهده رزومه
                     </a>
                 </div>
@@ -146,34 +172,35 @@
 
         <!-- Bento Grid Section -->
         <section id="about" class="py-12 md:py-24">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-10 md:mb-16" data-aos="fade-up">دنیای <span class="text-blue-400">چند فرهنگی</span> من</h2>
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-10 md:mb-16" data-aos="fade-up">
+                <span data-i18n="about_title_1">دنیای</span> 
+                <span class="text-blue-400" data-i18n="about_title_2">چند فرهنگی</span> 
+                <span data-i18n="about_title_3">من</span>
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:auto-rows-[220px]">
                 
-                <!-- Card 1: Creative Profile (جایگزین عکس) -->
+                <!-- Card 1: Creative Profile -->
                 <div class="glass-panel rounded-3xl p-2 md:col-span-2 md:row-span-2 relative group overflow-hidden h-[300px] md:h-auto flex items-center justify-center" data-aos="fade-right">
-                    <!-- پس‌زمینه انتزاعی و متحرک -->
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-red-600/20 opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500/30 rounded-full blur-3xl animate-pulse-slow"></div>
                     
-                    <!-- آیکون و متن مرکزی -->
                     <div class="relative z-10 text-center p-6">
                         <div class="w-24 h-24 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-500">
                             <i class="ph-duotone ph-user-circle-gear text-5xl text-blue-300"></i>
                         </div>
-                        <h3 class="text-2xl font-black text-white mb-1 drop-shadow-lg">نیکان نورمحمدزاده</h3>
-                        <p class="text-sm text-blue-200 font-medium tracking-wider">توسعه‌دهنده فول‌اسنک</p>
+                        <h3 class="text-2xl font-black text-white mb-1 drop-shadow-lg" data-i18n="card_profile_name">نیکان نورمحمدزاده</h3>
+                        <p class="text-sm text-blue-200 font-medium tracking-wider" data-i18n="card_profile_role">توسعه‌دهنده فول‌اسنک</p>
                         <div class="mt-4 flex justify-center gap-2">
-                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">خلاق</span>
-                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">نوآور</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">Creative</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300 backdrop-blur-sm">Innovative</span>
                         </div>
                     </div>
 
-                    <!-- برچسب پایین -->
                     <div class="absolute bottom-4 inset-x-4 flex justify-between items-center">
                         <div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-300 flex items-center gap-2">
                             <i class="ph-bold ph-map-pin"></i>
-                            کپنهاگن / تهران
+                            <span data-i18n="card_profile_loc">کپنهاگن / تهران</span>
                         </div>
                         <i class="ph-duotone ph-code text-2xl text-white/50"></i>
                     </div>
@@ -185,31 +212,26 @@
                     
                     <div class="flex items-center gap-3 mb-4">
                         <span class="text-3xl">🇩🇰</span>
-                        <h3 class="text-xl md:text-2xl font-black text-white">زاده کپنهاگن</h3>
+                        <h3 class="text-xl md:text-2xl font-black text-white" data-i18n="card_cph_title">زاده کپنهاگن</h3>
                     </div>
                     
-                    <p class="text-gray-300 text-sm md:text-base leading-relaxed text-justify">
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed text-justify" data-i18n="card_cph_desc">
                         متولد سرزمین وایکینگ‌ها؛ جایی که <b>دموکراسی</b>، <b>رفاه اجتماعی</b> و <b>آزادی</b> در بالاترین سطح جهانی است. فرهنگ دانمارک به من "هوگه" (Hygge) یا هنر لذت بردن از سادگی، و طراحی مینیمال را آموخت. من این کیفیت اسکاندیناوی را با اشتیاق ایرانی ترکیب می‌کنم.
                     </p>
                 </div>
 
-                <!-- Card 3: Location (Split Maps) -->
+                <!-- Card 3: Location -->
                 <div class="glass-panel rounded-3xl p-0 relative overflow-hidden flex flex-col group min-h-[220px]" data-aos="fade-left">
-                    <!-- Label Overlay -->
                     <div class="absolute top-0 left-0 w-full p-4 z-20 flex justify-between text-xs font-bold pointer-events-none">
-                        <span class="bg-red-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm">زادگاه</span>
-                        <span class="bg-green-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm flex items-center gap-1"><span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>اکنون</span>
+                        <span class="bg-red-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm" data-i18n="card_loc_birth">زادگاه</span>
+                        <span class="bg-green-600/80 text-white px-2 py-1 rounded shadow-lg backdrop-blur-sm flex items-center gap-1"><span class="w-2 h-2 bg-white rounded-full animate-pulse"></span><span data-i18n="card_loc_now">اکنون</span></span>
                     </div>
 
-                    <!-- Maps Container -->
                     <div class="flex h-full w-full relative">
-                        <!-- Denmark Map (Left) -->
                         <div class="w-1/2 h-full bg-gray-900 relative border-l border-white/10">
                             <img src="1000082474.png" class="w-full h-full object-contain p-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500" alt="Denmark Map">
                             <div class="absolute bottom-2 left-2 text-[10px] text-gray-500 font-mono">CPH</div>
                         </div>
-                        
-                        <!-- Iran Map (Right) -->
                         <div class="w-1/2 h-full bg-gray-800 relative">
                             <img src="1000082409.png" class="w-full h-full object-contain p-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500" alt="Iran Map">
                             <div class="absolute bottom-2 right-2 text-[10px] text-gray-500 font-mono">IRN</div>
@@ -219,9 +241,9 @@
 
                 <!-- Card 4: Age -->
                 <div class="glass-panel rounded-3xl p-6 flex flex-col justify-center items-center text-center group min-h-[150px]" data-aos="fade-up">
-                    <span class="text-5xl md:text-7xl font-black text-white mb-1">۱۶</span>
-                    <span class="text-gray-400 uppercase tracking-widest text-xs font-bold">سال سن</span>
-                    <p class="text-[10px] text-gray-500 mt-2">خلاقیت جوان، استاندارد جهانی</p>
+                    <span class="text-5xl md:text-7xl font-black text-white mb-1" data-i18n="card_age_num">۱۶</span>
+                    <span class="text-gray-400 uppercase tracking-widest text-xs font-bold" data-i18n="card_age_label">سال سن</span>
+                    <p class="text-[10px] text-gray-500 mt-2" data-i18n="card_age_sub">خلاقیت جوان، استاندارد جهانی</p>
                 </div>
 
                 <!-- Card 5: Tech Stack -->
@@ -239,9 +261,9 @@
         <section id="contact" class="py-12">
             <div class="glass-panel rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-red-600/5 to-transparent pointer-events-none"></div>
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6">همکاری با استانداردهای اسکاندیناوی</h2>
-                <p class="text-gray-400 mb-8 max-w-xl mx-auto">کیفیت، زمان‌بندی دقیق و طراحی مینیمال؛ این‌ها قول من به شماست.</p>
-                <a href="https://t.me/ParsiHelp" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-sm md:text-lg hover:scale-105 transition-transform shadow-lg shadow-white/10">
+                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6" data-i18n="cta_title">همکاری با استانداردهای اسکاندیناوی</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-i18n="cta_desc">کیفیت، زمان‌بندی دقیق و طراحی مینیمال؛ این‌ها قول من به شماست.</p>
+                <a href="https://t.me/ParsiHelp" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-sm md:text-lg hover:scale-105 transition-transform shadow-lg shadow-white/10" data-i18n="cta_btn">
                     <i class="ph-fill ph-telegram-logo text-blue-500 text-xl"></i>
                     ارسال پیام در تلگرام
                 </a>
@@ -251,13 +273,125 @@
     </main>
 
     <footer class="border-t border-white/5 bg-black/50 backdrop-blur-xl py-8 text-center text-gray-500 text-sm flex flex-col gap-2">
-        <p>© 2025 توسعه داده شده توسط نیکان نورمحمدزاده.</p>
-        <p class="text-xs opacity-50">From Copenhagen with Love to Iran ❤️</p>
+        <p data-i18n="footer_copy">© 2025 توسعه داده شده توسط نیکان نورمحمدزاده.</p>
+        <p class="text-xs opacity-50" data-i18n="footer_sub">From Copenhagen with Love to Iran ❤️</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
+
+        // دیکشنری ترجمه
+        const translations = {
+            fa: {
+                nav_story: "داستان من",
+                nav_tech: "تکنولوژی‌ها",
+                nav_projects: "پروژه‌ها",
+                nav_contact: "ارتباط",
+                hero_title_1: "از کپنهاگن تا تهران",
+                hero_title_2: "کدنویسی بدون مرز",
+                hero_desc: "توسعه‌دهنده ۱۶ ساله با ریشه‌های اسکاندیناوی. ترکیب نظم دانمارکی و خلاقیت ایرانی برای خلق تجربه‌های دیجیتال منحصر به فرد.",
+                hero_btn_collab: "شروع همکاری",
+                hero_btn_resume: "مشاهده رزومه",
+                about_title_1: "دنیای",
+                about_title_2: "چند فرهنگی",
+                about_title_3: "من",
+                card_profile_name: "نیکان نورمحمدزاده",
+                card_profile_role: "توسعه‌دهنده فول‌اسنک",
+                card_profile_loc: "کپنهاگن / تهران",
+                card_cph_title: "زاده کپنهاگن",
+                card_cph_desc: "متولد سرزمین وایکینگ‌ها؛ جایی که <b>دموکراسی</b>، <b>رفاه اجتماعی</b> و <b>آزادی</b> در بالاترین سطح جهانی است. فرهنگ دانمارک به من 'هوگه' (Hygge) یا هنر لذت بردن از سادگی، و طراحی مینیمال را آموخت. من این کیفیت اسکاندیناوی را با اشتیاق ایرانی ترکیب می‌کنم.",
+                card_loc_birth: "زادگاه",
+                card_loc_now: "اکنون",
+                card_age_num: "۱۶",
+                card_age_label: "سال سن",
+                card_age_sub: "خلاقیت جوان، استاندارد جهانی",
+                cta_title: "همکاری با استانداردهای اسکاندیناوی",
+                cta_desc: "کیفیت، زمان‌بندی دقیق و طراحی مینیمال؛ این‌ها قول من به شماست.",
+                cta_btn: "ارسال پیام در تلگرام",
+                footer_copy: "© 2025 توسعه داده شده توسط نیکان نورمحمدزاده.",
+                footer_sub: "From Copenhagen with Love to Iran ❤️"
+            },
+            en: {
+                nav_story: "My Story",
+                nav_tech: "Tech Stack",
+                nav_projects: "Projects",
+                nav_contact: "Contact",
+                hero_title_1: "From Copenhagen to Tehran",
+                hero_title_2: "Coding Without Borders",
+                hero_desc: "16-year-old developer with Scandinavian roots. Blending Danish discipline with Iranian creativity to craft unique digital experiences.",
+                hero_btn_collab: "Start Collaboration",
+                hero_btn_resume: "View Resume",
+                about_title_1: "My",
+                about_title_2: "Multicultural",
+                about_title_3: "World",
+                card_profile_name: "Nikan Nourmohammadzadeh",
+                card_profile_role: "Full-Stack Developer",
+                card_profile_loc: "Copenhagen / Tehran",
+                card_cph_title: "Born in Copenhagen",
+                card_cph_desc: "Born in the land of Vikings; where <b>democracy</b>, <b>social welfare</b>, and <b>freedom</b> are world-class. Danish culture taught me 'Hygge'—the art of enjoying simplicity—and minimal design. I combine this Scandinavian quality with Iranian passion.",
+                card_loc_birth: "Birthplace",
+                card_loc_now: "Current",
+                card_age_num: "16",
+                card_age_label: "Years Old",
+                card_age_sub: "Young Creativity, Global Standard",
+                cta_title: "Collaboration with Scandinavian Standards",
+                cta_desc: "Quality, precise timing, and minimal design; these are my promises to you.",
+                cta_btn: "Send Message on Telegram",
+                footer_copy: "© 2025 Developed by Nikan Nourmohammadzadeh.",
+                footer_sub: "From Copenhagen with Love to Iran ❤️"
+            },
+            da: {
+                nav_story: "Min Historie",
+                nav_tech: "Teknologi",
+                nav_projects: "Projekter",
+                nav_contact: "Kontakt",
+                hero_title_1: "Fra København til Teheran",
+                hero_title_2: "Kodning Uden Grænser",
+                hero_desc: "16-årig udvikler med skandinaviske rødder. Forener dansk disciplin med iransk kreativitet for at skabe unikke digitale oplevelser.",
+                hero_btn_collab: "Start Samarbejde",
+                hero_btn_resume: "Se CV",
+                about_title_1: "Min",
+                about_title_2: "Multikulturelle",
+                about_title_3: "Verden",
+                card_profile_name: "Nikan Nourmohammadzadeh",
+                card_profile_role: "Full-Stack Udvikler",
+                card_profile_loc: "København / Teheran",
+                card_cph_title: "Født i København",
+                card_cph_desc: "Født i vikingernes land; hvor <b>demokrati</b>, <b>velfærd</b> og <b>frihed</b> er i verdensklasse. Dansk kultur lærte mig 'Hygge' – kunsten at nyde det enkle – og minimalt design. Jeg kombinerer denne skandinaviske kvalitet med iransk passion.",
+                card_loc_birth: "Fødested",
+                card_loc_now: "Nuværende",
+                card_age_num: "16",
+                card_age_label: "År Gammel",
+                card_age_sub: "Ung Kreativitet, Global Standard",
+                cta_title: "Samarbejde med Skandinaviske Standarder",
+                cta_desc: "Kvalitet, præcis timing og minimalt design; det er mine løfter til dig.",
+                cta_btn: "Send Besked på Telegram",
+                footer_copy: "© 2025 Udviklet af Nikan Nourmohammadzadeh.",
+                footer_sub: "Fra København med Kærlighed til Iran ❤️"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.lang === lang) btn.classList.add('active');
+            });
+
+            // Update direction and lang attribute
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+
+            // Update text content
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if(translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+        }
     </script>
 </body>
 </html>
